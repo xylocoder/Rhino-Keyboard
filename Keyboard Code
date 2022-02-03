@@ -1,0 +1,30 @@
+uint8_t buf[8] = {0};
+
+  #define PIN_H A0
+  #define PIN_i A1
+
+void setup() {
+    Serial.begin(9600);
+
+    pinMode(PIN_H,INPUT);
+    pinMode(PIN_i,INPUT);
+}
+
+void loop() {
+  if(digitalRead(PIN_H) == HIGH){
+  buf[2] = 11;
+  Serial.write(buf,8);
+  keyRelease();
+  }
+  if(digitalRead(PIN_i) == HIGH){
+  buf[2] = 12;
+  Serial.write(buf,8);
+  keyRelease();
+  }
+
+}
+void keyRelease() {
+  buf[0] = 0;
+  buf[2] = 0;
+  Serial.write(buf,8);
+  }
